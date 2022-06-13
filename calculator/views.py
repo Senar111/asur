@@ -3,6 +3,7 @@ from django.views.generic import TemplateView
 from django.shortcuts import render , redirect
 from .forms import KruppForm, OdermattForm
 import math
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 class HomePage(TemplateView):
@@ -14,7 +15,7 @@ class HomePage(TemplateView):
         else:
             form = KruppForm()
         return render(request,self.template_name, {'form':form, 'nazwisko': nazwisko})
-
+    @csrf_exempt
     def post(self,request, nazwisko):
 
         """ jesli nazwisko z URL to Krupp"""
